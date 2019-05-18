@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +31,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="post" action="">
                     <span>
                     <img src="logoDept.png" height="80" width="80" class="center"><br>
                     </span>
@@ -37,7 +40,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						<input class="input100" type="text" name="login" placeholder="Email">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-envelope"></span>
@@ -110,3 +113,11 @@
 
 </body>
 </html>
+<?php
+$email=isset($_POST['login'])? $_POST['login']:"";
+$password=isset($_POST['pass'])? $_POST['pass']:"";
+if($email == 'omar@.haha.com' && $password == 'ensah'){
+    $_SESSION['haha']=$_POST['email'];
+    echo $_SESSION;  
+}
+?>
