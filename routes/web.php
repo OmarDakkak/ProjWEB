@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/prof',"admincontroller@fonction_prof");
+Route::post('/prof',"admincontroller@fonction_prof");
+Route::get('/liste',"EtudiantController@viewetudiant");
+//Route::get('/resp',"admincontroller@fonction_resp");
+//Route::get('/chef',"admincontroller@fonction_chef");
