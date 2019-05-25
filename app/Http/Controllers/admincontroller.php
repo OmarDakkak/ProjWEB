@@ -17,7 +17,7 @@ class admincontroller extends Controller
             else
                 return view('error');
         }
-        return view('prof_page');
+        return view('welcome');
     }
 //    public function fonction_resp(){
 //        return view('resp_page');

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>How to create the DropDown Navigation Bar.</title>
+    <title>Page Chef</title>
     <link rel="stylesheet" href="stylenav.css">
 </head>
 <body>
