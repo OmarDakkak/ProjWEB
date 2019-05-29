@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModule extends Migration
+class CreateModuleresp extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateModule extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('moduleresps', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nom');
-
+            $table->float('idp');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreateModule extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('moduleresps');
     }
 }

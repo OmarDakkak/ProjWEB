@@ -1,6 +1,6 @@
 a img{
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 110px;
 }
 nav{
   margin-bottom: 10px;
@@ -17,4 +17,36 @@ ul li a{
 #na{
   background: linear-gradient(to right, #c6e0f5, #9561e2);
   /*background: linear-gradient(to right, #93DEF0, #E3A0F0);*/
+}
+td a{
+  color: #7f2da6;
+}
+h4{
+  color: #1b54a6;
+  padding: 10px;
+}
+div span{
+  margin-left: 10px;
+}
+#men{
+  color: #771da6;
+}
+#mobile-nav{
+  background-color: #c6e0f5;
+}
+#mobile-nav li>a{
+  color: #8742a6;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+.page-footer{
+  margin-top: 19%;
+  background: linear-gradient(to right, #c6e0f5, #9561e2);
 }

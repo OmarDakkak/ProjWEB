@@ -360,7 +360,10 @@ class ComposerStaticInit175a8ea3c5d4a0af6801d77b0f478988
     );
 
     public static $classMap = array (
+        'App\\Absence' => __DIR__ . '/../..' . '/app/Absence.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Descriptif' => __DIR__ . '/../..' . '/app/Descriptif.php',
+        'App\\Etudiant' => __DIR__ . '/../..' . '/app/Etudiant.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -368,6 +371,8 @@ class ComposerStaticInit175a8ea3c5d4a0af6801d77b0f478988
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\Etudiantcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/Etudiantcontroller.php',
+        'App\\Http\\Controllers\\admincontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/admincontroller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -376,6 +381,10 @@ class ComposerStaticInit175a8ea3c5d4a0af6801d77b0f478988
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Module' => __DIR__ . '/../..' . '/app/Module.php',
+        'App\\Moduleresp' => __DIR__ . '/../..' . '/app/Moduleresp.php',
+        'App\\Note' => __DIR__ . '/../..' . '/app/Note.php',
+        'App\\Prof' => __DIR__ . '/../..' . '/app/Prof.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

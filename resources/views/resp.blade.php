@@ -35,7 +35,7 @@
     </script>
     <meta charset="UTF-8">
     <title>Page Prof</title>
-    <link rel="stylesheet" href="{{asset('stylenav.css')}}">
+    <link rel="stylesheet" href="stylenav.css">
     {{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">--}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <scrip src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/core.js"></scrip>
@@ -59,7 +59,7 @@
 <body>
 <nav class="nav-extended" id="na">
     <div class="nav-wrapper">
-        <a href="#!" class="brand-logo"><img src="{{asset('logoDept.png')}}" class="animated fadeInLeft"></a>
+        <a href="#!" class="brand-logo"><img src="logoDept.png" class="animated fadeInLeft"></a>
         <a href="#" class="sidenav-trigger" data-target="mobile-nav" id="men"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="/mdresp">Modules responsable</a></li>
@@ -77,7 +77,7 @@
         </ul>
     </div>
     <div class="nav-content">
-        <span class="nav-title animated fadeInUp">Bonjour Prof</span>
+        <span class="nav-title animated fadeInUp">Bonjour Monsieur le résponsable de filière:</span>
         </a>
     </div>
 </nav>
@@ -90,7 +90,7 @@
     <li><a>État des enseignements</a></li>
     <li><a>Saisir notes</a></li>
     <li><a>Saisir l'absence</a></li>
-    <li><a>Affecter les responsables de filières</a>
+{{--    <li><a>Affecter les responsables de filières</a>--}}
 </ul>
 
 
@@ -210,18 +210,18 @@ try { $i=$moduleresp ?>
 
 <h4 class="animated slideInDown">Voici la liste des modules dont vous êtes responsable:</h4>
 
-            <table class="striped">
-                <thead>
-                <tr><th>ID_Module</th><th>Nom du module</th></tr>
-                </thead>
+<table class="striped">
+    <thead>
+    <tr><th>ID_Module</th><th>Nom du module</th></tr>
+    </thead>
 
-                <tbody>
+    <tbody>
 
-                @foreach ($moduleresp as $m)
-                    <tr><td>Module n: {{$m->id}}</td><td>{{$m->nom}}</td></tr>
-                @endforeach
-                </tbody>
-            </table>
+    @foreach ($moduleresp as $m)
+        <tr><td>Module n: {{$m->id}}</td><td>{{$m->nom}}</td></tr>
+    @endforeach
+    </tbody>
+</table>
 
 
 <?php
@@ -263,7 +263,7 @@ try { $i=$na; ?>
 try { $i=$absence ?>
 <h4 class="animated slideInDown">saisie/consultation des absences:</h4>
 <ul class="collapsible">
-    <li class="active">
+    <li>
         <div class="collapsible-header"><i class="material-icons">list</i>Applications WEB</div>
         <div class="collapsible-body">
             <table class="striped">
@@ -412,7 +412,6 @@ try { $i=$note ?>
                         @foreach($note as $n)
                             @if(($n->idm)=='1' &&($n->ide)==$e->id )
                                 <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="addn/{{$n->id}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer"></form></td></tr>
-{{--                                    <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td>Note: <input type="texte" name="ns" id="note1"> <button onclick="passDataToController()">confirmer</button></td></tr>--}}
                             @endif
                         @endforeach
                     @endif
@@ -526,18 +525,18 @@ try { $i=$note ?>
 <?php
 try {   $i= $prof; $i=$module ?>
 
-        <table >
-        <thead>
-        <tr><th>Module</th><th>Professeur</th><th>Assuré/non-Assuré</th><th>Affecter</th></tr>
+<table >
+    <thead>
+    <tr><th>Module</th><th>Professeur</th><th>Assuré/non-Assuré</th><th>Affecter</th></tr>
 
-        </thead>
+    </thead>
 
-        <tbody>
-        @foreach ($module as $m)
-            <tr><td>{{$m->nom}}</td><td>@foreach($prof as $p) @if(($m->idm)==($p->id)) {{$p->nom}} {{$p->prenom}} @endif @endforeach</td><td>@if(($m->idm)=='0') Assuré @else non-Assuré @endif</td><td><form action="addaffectation/{{$m->id}}" method="post">{{ csrf_field() }} <input type="texte" name="aa"> <input type="submit" name="" value="affecter"></form></td></tr>
-        @endforeach
-        </tbody>
-       </table>
+    <tbody>
+    @foreach ($module as $m)
+        <tr><td>{{$m->nom}}</td><td>@foreach($prof as $p) @if(($m->idm)==($p->id)) {{$p->nom}} {{$p->prenom}} @endif @endforeach</td><td>@if(($m->idm)=='0') Assuré @else non-Assuré @endif</td><td><form action="addaffectation/{{$m->id}}" method="post">{{ csrf_field() }} <input type="texte" name="aa"> <input type="submit" name="" value="affecter"></form></td></tr>
+    @endforeach
+    </tbody>
+</table>
 </div>
 <?php
 } catch (Exception $e) {}?>
@@ -558,7 +557,7 @@ try {   $i= $variable;  ?>
     <tbody>
     @foreach ($prof as $p)
         <tr><td>{{$p->nom}} {{$p->prenom}}</td><td><a href="addaffectationresp/{{$p->id}}">affecter</a></td></tr>
-{{--        <tr><td>{{$p->nom}} {{$p->prenom}}</td><td><form action="addaffectationresp/{{$p->id}}" method="post">{{ csrf_field() }}<input type="submit" name="" value="affecter"></form></td></tr>--}}
+        {{--        <tr><td>{{$p->nom}} {{$p->prenom}}</td><td><form action="addaffectationresp/{{$p->id}}" method="post">{{ csrf_field() }}<input type="submit" name="" value="affecter"></form></td></tr>--}}
 
     @endforeach
     </tbody>
@@ -612,56 +611,6 @@ try {    $i=$namee; ?>
         </div>
     </div>
 </footer>
-
-<script>
-
-    function getID() {
-        var id=document.getElementById("note1");
-        return id;
-    }
-    function passDataToController(){
-
-        var id = getID();
-
-        var form_input = new Array(); // creates an array of objects
-
-        // Add _token object
-        form_input.push({
-            name: '_token',
-            value: '{{csrf_token()}}'
-        });
-        // Add hash object
-
-        form_input.push({
-            name: 'data',
-            value: id
-        });
-
-        $.ajax({
-            url : 'sendData',
-            type: "POST",
-            data: $.param(form_input), // back to a string!
-            success : function (id) {
-                $('#result').html("");
-                M.toast({html: 'Vos données ont été sauvegardé avec succès'});
-                // alert(id);
-                //alert("Done");
-
-            },
-            error: function (){
-                //M.toast({html: 'Vos données ont été sauvegardé avec succés'});
-                M.toast({html: 'Une ou plusieurs données peut ne pas être sauvegardé, veuillez vérifier votre feuille depuis la liste des feuilles'});
-
-            },
-            // and so on
-        });
-
-
-
-    }
-
-
-</script>
 
 </body>
 </html>

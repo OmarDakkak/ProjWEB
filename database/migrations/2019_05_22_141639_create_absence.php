@@ -14,13 +14,13 @@ class CreateAbsence extends Migration
     public function up()
     {
         Schema::create('absences', function (Blueprint $table) {
-            $table->bigIncrements('ida');
-            $table->date('date');
-//            $table->integer('module_id')->unsigned();
-//            $table->foreign('module_id')->references('id')->on('modules');
-//            $table->timestamps();
-//            $table->softDeletes();
-       });
+            $table->bigIncrements('id');
+            $table->date('date')->timestamp('created_at')->useCurrent();
+            $table->float('ide');
+            $table->float('idm');
+            $table->float('nmbrabsence')->default('0');
+            $table->timestamps();
+        });
     }
 
     /**

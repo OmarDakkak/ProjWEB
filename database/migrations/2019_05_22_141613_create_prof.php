@@ -14,10 +14,11 @@ class CreateProf extends Migration
     public function up()
     {
         Schema::create('profs', function (Blueprint $table) {
-            $table->bigIncrements('id_p');
+            $table->bigIncrements('id');
             $table->string('nom');
             $table->string('prenom');
             $table->string('role');
+            $table->timestamps();
         });
     }
 

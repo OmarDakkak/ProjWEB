@@ -10,9 +10,9 @@ class admincontroller extends Controller
         if($request->isMethod('post')){
             if($request->input('login')=="omar@haha.com" && $request->input('pass')=="ensah")
                 return view('prof_page');
-            if($request->input('login')=="abdelfettah@.haha.com" && $request->input('pass')=="ensah")
-                return view('resp_page');
-            if($request->input('login')=="hajjioui@.haha.com" && $request->input('pass')=="ensah")
+            if($request->input('login')=="resp@haha.com" && $request->input('pass')=="ensah")
+                return view('resp');
+            if($request->input('login')=="chef@haha.com" && $request->input('pass')=="ensah")
                 return view('chef_page');
             else
                 return view('error');
