@@ -33,7 +33,7 @@
             }
             var role= window.location.pathname.split("/").pop();
             if(role == "resp" || role == "chef"){
-                M.toast({html:'Les notes ont étés validés avec succès'});}
+                M.toast({html:'Les notes ont étés validés avec succès', classes: 'rounded'});}
         }
     </script>
 
@@ -55,6 +55,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
     <script>
         $(document).ready(function () {
             $('.sidenav').sidenav();
@@ -76,11 +77,12 @@
         </ul>
     </div>
     <div class="nav-wrapper">
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down" >
             <li><a href="/nt/{{$identite}}/{{$role}}">Saisir notes</a></li>
             <li><a href="/abs/{{$identite}}/{{$role}}">Saisir l'absence</a></li>
            @if($role == 'chef') <li id="chef"><a href="/affecterresp/{{$identite}}/{{$role}}">Affecter les responsables de filières</a></li> @endif
         </ul>
+
     </div>
     <div class="nav-content">
         <span class="nav-title animated fadeInUp" id="greetings">
@@ -90,7 +92,7 @@
             @if($identite=='4')  <?php echo"Bonjour Pr.HADDOUCH"; ?>@endif
             @if($identite=='5')  <?php echo"Bonjour Monsieur le chef de département"; ?>@endif
         </span>
-        <form action="/logout" method="post">{{ csrf_field() }} <input type="submit" value="Se deconnecter"> </form>
+        <form action="/logout" method="post">{{ csrf_field() }} <input type="submit" value="Se deconnecter" class="validate tooltipped" data-position="right" data-tooltip="Retourner à la page d'acceuil!"> </form>
     </div>
 </nav>
 
@@ -427,14 +429,14 @@ try { $i=$note ?>
                     @if(($e->idm)=='1')
                         @foreach($note as $n)
                             @if(($n->idm)=='1' &&($n->ide)==$e->id )
-                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer"></form></td></tr>
+                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer" class="validate tooltipped" data-position="right" data-tooltip="Cliquez pour confirmer la note!"></form></td></tr>
                             @endif
                         @endforeach
                     @endif
                 @endforeach
                 </tbody>
             </table>
-            <button onclick="exportTableToExcel('note1', 'notes_WEB')" id="excel">Fichier Excel</button>
+            <button class="btn tooltipped" data-position="right" data-tooltip="Telecharger le fichier Excel, Veuillez supprimer la colonne E ;)" onclick="exportTableToExcel('note1', 'notes_WEB')" id="excel"><i class="far fa-file-excel"></i>    Fichier Excel</button>
         </div>
     </li>
     <li id="mod-2">
@@ -452,14 +454,14 @@ try { $i=$note ?>
                     @if(($e->idm)=='2')
                         @foreach($note as $n)
                             @if(($n->idm)=='2' &&($n->ide)==$e->id )
-                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer"></form></td></tr>
+                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input  type="submit" name="" value="confirmer" class="validate tooltipped" data-position="right" data-tooltip="Cliquez pour confirmer la note!"></form></td></tr>
                             @endif
                         @endforeach
                     @endif
                 @endforeach
                 </tbody>
             </table>
-            <button onclick="exportTableToExcel('note2', 'notes_Complexite')" id="excel">Fichier Excel</button>
+            <button class="btn tooltipped" data-position="right" data-tooltip="Telecharger le fichier Excel, Veuillez supprimer la colonne E ;)"  onclick="exportTableToExcel('note2', 'notes_Complexite')" id="excel"><i class="far fa-file-excel"></i>    Fichier Excel</button>
         </div>
     </li>
     <li id="mod-3">
@@ -477,14 +479,14 @@ try { $i=$note ?>
                     @if(($e->idm)=='3')
                         @foreach($note as $n)
                             @if(($n->idm)=='3' &&($n->ide)==$e->id )
-                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer"></form></td></tr>
+                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer" class="validate tooltipped" data-position="right" data-tooltip="Cliquez pour confirmer la note!"></form></td></tr>
                             @endif
                         @endforeach
                     @endif
                 @endforeach
                 </tbody>
             </table>
-            <button onclick="exportTableToExcel('note3', 'notes_CPP')" id="excel">Fichier Excel</button>
+            <button class="btn tooltipped" data-position="right" data-tooltip="Telecharger le fichier Excel, Veuillez supprimer la colonne E ;)"  onclick="exportTableToExcel('note3', 'notes_CPP')" id="excel"><i class="far fa-file-excel"></i>    Fichier Excel</button>
         </div>
     </li>
     <li id="mod-4">
@@ -502,14 +504,14 @@ try { $i=$note ?>
                     @if(($e->idm)=='4')
                         @foreach($note as $n)
                             @if(($n->idm)=='4' &&($n->ide)==$e->id )
-                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer"></form></td></tr>
+                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer" class="validate tooltipped" data-position="right" data-tooltip="Cliquez pour confirmer la note!"></form></td></tr>
                             @endif
                         @endforeach
                     @endif
                 @endforeach
                 </tbody>
             </table>
-            <button onclick="exportTableToExcel('note4', 'notes_UML')" id="excel">Fichier Excel</button>
+            <button class="btn tooltipped" data-position="right" data-tooltip="Telecharger le fichier Excel, Veuillez supprimer la colonne E ;)"  onclick="exportTableToExcel('note4', 'notes_UML')" id="excel"><i class="far fa-file-excel"></i>    Fichier Excel</button>
         </div>
     </li>
     <li id="mod-5">
@@ -527,14 +529,14 @@ try { $i=$note ?>
                     @if(($e->idm)=='5')
                         @foreach($note as $n)
                             @if(($n->idm)=='5' &&($n->ide)==$e->id )
-                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer"></form></td></tr>
+                                <tr><td>{{$e->CNE}}</td><td>{{$e->nom}}</td><td>{{$e->prenom}}</td><td>{{$n->note}}</td><td><form action="/addn/{{$n->id}}/{{$identite}}/{{$role}}" method="post">{{ csrf_field() }}Note: <input type="texte" name="ns"> <input type="submit" name="" value="confirmer" class="validate tooltipped" data-position="right" data-tooltip="Cliquez pour confirmer la note!"></form></td></tr>
                             @endif
                         @endforeach
                     @endif
                 @endforeach
                 </tbody>
             </table>
-            <button onclick="exportTableToExcel('note5', 'notes_RO')" id="excel">Fichier Excel</button>
+            <button class="btn tooltipped" data-position="right" data-tooltip="Telecharger le fichier Excel, Veuillez supprimer la colonne E ;)"  onclick="exportTableToExcel('note5', 'notes_RO')" id="excel"><i class="far fa-file-excel"></i>    Fichier Excel</button>
         </div>
     </li>
 </ul>
@@ -780,7 +782,7 @@ try {    $i=$namee; ?>
     if(role=="chef"){
         ex.innerHTML = "Valider Les notes";
     }else if(role=="resp") {
-        ex.innerHTML = "Valider / Telecharger ";
+        ex.innerHTML = "<i class=\"far fa-file-excel\"></i>       Valider / Telecharger ";
     }
 </script>
 <script>
@@ -798,6 +800,11 @@ try {    $i=$namee; ?>
             return false;
         }
     }
+</script>
+<script>
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+    });
 </script>
 </body>
 </html>

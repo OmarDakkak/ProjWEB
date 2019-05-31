@@ -29,23 +29,23 @@
             {{csrf_field() }}
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="Module" name="m" type="text" value="<?php echo"$Module"; ?>" class="validate">
+                    <input id="Module" name="m" type="text" value="<?php echo"$Module"; ?>" class="validate" style="border-color: #771da6">
                     <label for="Module">Module:</label>
                 </div>
                 <div class="input-field col s6">
-                    <input type="text" name="v" value="<?php echo"$VH"; ?>" id="VH" type="text" class="validate">
+                    <input type="text" name="v" value="<?php echo"$VH"; ?>" id="VH" type="text" class="validate" style="border-color: #771da6">
                     <label for="VH">VH:</label>
                 </div>
                 <div class="input-field col s6">
-                    <input type="text" name="c" value="<?php echo"$Coordonnateur"; ?>" id="Cor" class="validate">
+                    <input type="text" name="c" value="<?php echo"$Coordonnateur"; ?>" id="Cor" class="validate" style="border-color: #771da6">
                     <label for="Cor">Coordonnateur:</label>
                 </div>
                 <div class="input-field col s6">
-                    <input type="text" name="s" value="<?php echo"$Specialite"; ?>" id="sp" class="validate">
+                    <input type="text" name="s" value="<?php echo"$Specialite"; ?>" id="sp" class="validate" style="border-color: #771da6">
                     <label for="sp">Specialité:</label>
                 </div>
                 <div class="input-field col s6">
-                    <input type="text" name="g" value="<?php echo"$Grade"; ?>" id="gr" class="validate">
+                    <input type="text" name="g" value="<?php echo"$Grade"; ?>" id="gr" class="validate" style="border-color: #771da6">
                     <label for="gr">Grade:</label>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color: #771da6 ">Submit
