@@ -16,8 +16,8 @@ class CreateModule extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nom');
-            $table->float('idp');
-            $table->float('ide');
+            $table->integer('idp');
+            $table->integer('ide');
             $table->timestamps();
         });
     }

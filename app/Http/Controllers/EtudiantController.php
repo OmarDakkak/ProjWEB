@@ -19,105 +19,108 @@ class Etudiantcontroller extends Controller
 //        $this->middleware('auth');
 //    }
 
-    public function ViewEtudiant(){
+    public function ViewEtudiant($identite,$role){
 
             $etudiant=Etudiant::all();
             $arr=Array('etudiant'=>$etudiant);
             $name = 'liste';
-            return view('prof_page',$arr,compact('name'));
+            return view('/prof_page',$arr,compact('name','identite','role'));
+      // return redirect()->to("http://127.0.0.1:8000/liste",compact('name','id'));
     }
 
 
 
-    public function addabs($id,$nmbr){
+    public function addnote($id, Request $request,$identite,$role){
+        $note=Note::find($id);
+        $note->note=$request->input('ns');
+        $note->save();
+        return back()->withInput(compact('identite','role'));
+    }
+
+
+
+    public function addaff($id,Request $request,$identite,$role){
+
+        $module=Module::find($id);
+        $module->idp=$request->input('aa');
+        $module->save();
+        return back()->withInput(compact('identite','role'));
+    }
+
+
+    public function addaffresp($id,$identite,$role){
+
+        $prof=Prof::all();
+        foreach ($prof as $p) { if($p->role=='resp') {$p->role='prof'; $p->save();}}
+        $profresp=Prof::find($id);
+        $profresp->role='resp';
+        $profresp->save();
+        $professeur=Prof::all();
+        return back()->withInput(compact('identite','role','professeur'));
+
+    }
+    public function addabs($id,$nmbr,$identite,$role){
 
         $sum=$nmbr+1;
         $absence=Absence::find($id);
         $absence->nmbrabsence=$sum;
         $absence->save();
-        return back();
-
+        //return back(compact('identite'));
+        //return view('prof_page',compact('identite'));
+        //return redirect()->to('http://127.0.0.1:8000/abs/identite',compact('identite'));
+        return back()->withInput(compact('identite','role'));
     }
-
-    public function addnote($id, Request $request){
-        $note=Note::find($id);
-        $note->note=$request->input('ns');
-        $note->save();
-        return back();
-    }
-
-
-
-    public function addaff($id,Request $request){
-
-        $module=Module::find($id);
-        $module->idp=$request->input('aa');
-        $module->save();
-        return back();
-    }
-
-
-    public function addaffresp($id){
-
-        $prof=Prof::all();
-        foreach ($prof as $p) {$p->role='prof'; $p->save();}
-        $profresp=Prof::find($id);
-        $profresp->role='resp';
-        $profresp->save();
-        return back();
-
-    }
-
-    public function Viewabs(){
+    public function viewabs($identite,$role){
         $etudiantabs=Etudiant::all();
-        $arr1=Array('etudiant'=>$etudiantabs);
+        $arr1=Array('etudiantabs'=>$etudiantabs);
         $absence=Absence::all();
         $arr2=Array('absence'=>$absence);
-        return view('prof_page',$arr1,$arr2);
+       // return redirect()->to('/prof_page',compact('identite'),$arr1,$arr2);
+        return view('/prof_page',compact('identite','absence','etudiantabs','role'));
     }
 
 
-    public function viewprof(){
+    public function viewprof($identite,$role){
         $module=Module::all();
         $arr1=Array('module'=>$module);
         $prof=Prof::all();
         $arr2=Array('prof'=>$prof);
 //        return view('prof_page',$arr1,$arr2);
         $p = 'liste';
-        return view('prof_page',$arr1,$arr2,compact('p'));
+        return view('prof_page',compact('p','identite','module','prof','role'));
     }
 
-    public function viewprofresp(){
+    public function viewprofresp($identite,$role){
         $prof=Prof::all();
         $arr1=Array('prof'=>$prof);
         $variable = 'liste';
-        return view('prof_page',$arr1,compact('variable'));
+        return view('prof_page',$arr1,compact('variable','identite','role'));
     }
 
 
-    public function viewnote(){
+    public function viewnote($identite,$role){
         $note=Note::all();
         $ar1=Array('note'=>$note);
         $etudiant=Etudiant::all();
         $ar2=Array('etudiant'=>$etudiant);
-        return view('prof_page',$ar1,$ar2);
+        return view('prof_page',compact('identite','note','etudiant','role'));
     }
 
 
 
-    public function viewmdresp(Request $request){
+    public function viewmdresp($identite,$role){
 
         $moduleresp=Moduleresp::all();
         $arr=Array('moduleresp'=>$moduleresp);
-        return view('prof_page',$arr);
+        return view('prof_page',$arr,compact('identite','role'));
     }
 
-    public function viewmd(Request $request){
+    public function viewmd($identite,$role){
 
         $module=Module::all();
         $arr=Array('module'=>$module);
         $na = 'liste';
-        return view('prof_page',$arr,compact('na'));
+        return view('prof_page',$arr,compact('na','identite','role'));
     }
 
 
@@ -128,26 +131,27 @@ class Etudiantcontroller extends Controller
 //    }
 
 
-    public function deletet($id){
+    public function deletet($id,$identite,$role){
         $etudiant_supprimer=Etudiant::find($id);
         $etudiant_supprimer->delete();
 //        $etudiant=Etudiant::all();
 //        $arr=Array('etudiant'=>$etudiant);
 //
 ////        return back();
-        return redirect()->to('/liste');
+        //return redirect()->to('/liste',compact('identite'));
+        return back()->withInput(compact('identite','role'));
     }
 
-    public function editdesc($id){
+    public function editdesc($id,$identite,$role){
         $des=Descriptif::find($id);
         $Module=$des->module;
         $VH=$des->VH;
         $Coordonnateur=$des->coordonnateur;
         $Specialite=$des->specialite;
         $Grade=$des->grade;
-        return view('des',compact('Coordonnateur','Specialite','VH','Grade','id'),compact('Module'));
+        return view('des',compact('Coordonnateur','Specialite','VH','Grade','id','identite','role'),compact('Module'));
     }
-    public function adddesc($id, Request $request){
+    public function adddesc($id, Request $request,$identite,$role){
         $desc=Descriptif::find($id);
         $desc->module=$request->input('m');
         $desc->VH=$request->input('v');
@@ -158,51 +162,15 @@ class Etudiantcontroller extends Controller
         $descriptif=Descriptif::all();
         $arr=Array('descriptif'=>$descriptif);
         $namee = 'liste';
-//        return view('/prof_page',$arr,compact('namee'));
-     return redirect()->to('http://127.0.0.1:8000/des');
-
+        return view('prof_page',$arr,compact('namee','identite','role'));
+       // return view('prof_page',compact('namee','identite','desc'));
+       // return redirect()->to("http://127.0.0.1:8000/des",compact('identite'));
     }
-    public function viewdes(){
-    echo "helooo";
+    public function viewdes($identite,$role){
+
         $descriptif=Descriptif::all();
         $arr=Array('descriptif'=>$descriptif);
         $namee = 'liste';
-        return view('prof_page',$arr,compact('namee'));
-    }
-    public function ajax1(Request $request){
-        if($request->ajax()){
-
-            $arrayresult = explode(",",$request['data']);
-
-            $count_lines = (count($arrayresult)-1)/11;
-
-            $dataToSave = array();
-
-            $indexCounter=0;
-
-            for($index=0; $index<$count_lines; $index++){
-                $currentArray = array();
-                for($secIndex=0; $secIndex<11; $secIndex++){
-                    $currentArray[$secIndex] = $arrayresult[$indexCounter];
-                    $indexCounter++;
-                }
-                array_push( $dataToSave, $currentArray);
-            }
-
-            foreach($dataToSave as $line){
-
-                $note=Note::find($id);
-                $note->note=$request->input('ns');
-                $note->save();
-
-            }
-
-
-
-            //return var_dump($request['data']);
-//            return "Data saved";
-        }
-
-        return "HTTP";
+        return view('prof_page',$arr,compact('namee','identite','role'));
     }
 }

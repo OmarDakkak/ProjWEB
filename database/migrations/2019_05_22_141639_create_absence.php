@@ -15,10 +15,10 @@ class CreateAbsence extends Migration
     {
         Schema::create('absences', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date')->timestamp('created_at')->useCurrent();
-            $table->float('ide');
-            $table->float('idm');
-            $table->float('nmbrabsence')->default('0');
+            $table->date('date');
+            $table->integer('nmbrabsence');
+            $table->integer('ide');
+            $table->integer('idm');
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CreateModuleresp extends Migration
         Schema::create('moduleresps', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nom');
-            $table->float('idp');
+            $table->integer('idp');
             $table->timestamps();
         });
     }

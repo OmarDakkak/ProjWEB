@@ -18,9 +18,9 @@ class CreateEtudiant extends Migration
             $table->string('CNE');
             $table->string('nom');
             $table->string('prenom');
-            $table->float('idn');
-            $table->float('ida');
-            $table->float('idm');
+            $table->integer('idn');
+            $table->integer('ida');
+            $table->integer('idm');
             $table->timestamps();
         });
     }

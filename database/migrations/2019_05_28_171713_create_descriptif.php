@@ -15,8 +15,13 @@ class CreateDescriptif extends Migration
     {
         Schema::create('descriptifs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('semestre');
+            $table->string('module');
+            $table->string('VH');
+            $table->string('coordonnateur');
+            $table->string('specialite');
+            $table->string('grade');
             $table->timestamps();
-
         });
     }
 
