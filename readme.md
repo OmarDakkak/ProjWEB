@@ -2,7 +2,7 @@
 
 ## About DMI 
 
-Ceci est une application développée pour faciliter la tâche du chef de département, chefs de filières et corps professoral du Département de Mathématiques et informatique de l'École Nationale des Sciences Appliquées en général.
+Ceci est une application développée pour faciliter la tâche du chef de département, chefs de filières et corps professoral du Département de Mathématiques et informatique de l'École Nationale des Sciences Appliquées d'Al Hoceima en général.
 
 ## DMI contributeurs
 
